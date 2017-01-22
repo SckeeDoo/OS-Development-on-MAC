@@ -54,8 +54,8 @@ jmp Main
 
 Write:
   lodsb           ; ds:si -> al
-  or  al, al      ; al=current character
-  jz  EndWrite ; exit if null terminator found
+  or  al, al      ; al = current character
+  jz  EndWrite    ; exit if null terminator found
   mov ah, 0Eh     ; print char in al in teletype mode
   int 10h 
   jmp Write
@@ -63,7 +63,7 @@ EndWrite:
   ret
 
 
-Newline:
+Newline:          
   mov al, 0Dh
   mov ah, 0Eh
   int 10h
@@ -78,7 +78,7 @@ Writeline:
   ret
   
 
-WaitInputMessage db  "Press any key to load kernel", 0
+WaitInputMessage db  "Press any key to start kernel", 0
 ErrorMessage db  "Error!", 0
 
 Main:
@@ -87,7 +87,7 @@ mov si, WaitInputMessage
 call Writeline
 
 xor ax, ax
-int 16h ; wait for keypress
+int 16h         ; wait for keypress
 
 ; set destination segment
 mov   ax, 7E0h
@@ -120,13 +120,12 @@ hlt
 
 LoadKernel:
   jmp 7E0h:0h ; jump to kernel
-
 times 510 - ($-$$) db 0 ; pad with zeros in order to fill the 512 bytes
 
 dw 0AA55h ;MBR signature id
 ~~~
 
-#### Above is our bootloader. I explained what's going on with some comments
+##### Above is our bootloader. I explained it with some comments
 
 
 
