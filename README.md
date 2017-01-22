@@ -42,7 +42,7 @@ There are two general types of Kernel:
 
 2. A Monolithic kernel is an OS architecture where the entire operating system (which includes the device drivers, file system, and the application IPC) is working in kernel space. Monolithic kernels are able to dynamically load (and unload) executable modules at runtime.
 
-##2. Lets write some code in assembly.
+##2. Code the bootloader.
 
 ~~~
 [bits 16]
