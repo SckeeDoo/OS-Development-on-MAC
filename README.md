@@ -28,4 +28,17 @@ Before running this script make sure that:
 
 After all this is done you can run this setup.sh file
 
+So in this tutorial we will learn some theory about kernel and will  create our first Kernel program. When we talk about Kernel there is
+a think called security Rings. This Rings are levels of protection in an operation system. There are basically 4 rings: 
+
+1. First Ring also called supervisor mode has more previlegies, this where Kernel stands, so Kernele is allowed to do pretty everything it wants
+2. Next two rings are more restricted in its action. This is where drivers are located
+3. Ring three also known as User Mode. This is the most restricted level. If you want to do an action you first  must to have permision from Kernel.
+
+This is made with a system call. this means that Kernel  still has ontrol other applications. Thats why Kernel are so important.
+
+There are two general types of Kernel:
+1. In computer science, a microkernel (also known as μ-kernel) is the near-minimum amount of software that can provide the mechanisms needed to implement an operating system (OS). These mechanisms include low-level address space management, thread management, and inter-process communication (IPC).
+
+2. A Monolithic kernel is an OS architecture where the entire operating system (which includes the device drivers, file system, and the application IPC) is working in kernel space. Monolithic kernels are able to dynamically load (and unload) executable modules at runtime.
 
