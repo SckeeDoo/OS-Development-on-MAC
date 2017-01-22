@@ -31,10 +31,52 @@ Writeline:
 ret
 
 
-student: 
-  mov si, Studentmsg
-  call Writeline
+moldova: 
+  call cls
+  mov ax, 012h
+  int 10h
+  mov al, 1100b
+
+  mov cx, 50  ;col
+  mov dx, 50  ;row
+  mov ah, 0ch ; put pixel
+
+  colcount:
+  inc cx
+  int 10h
+  cmp cx, 100
+  JNE colcount
+
+  mov cx, 10  ; reset to start of col
+  inc dx      ;next row
+  cmp dx, 250
+  JNE colcount
+
+
+
+
+
+
+
+
+  mov al, 1100b
+
+  mov cx, 150  ;col
+  mov dx, 50  ;row
+  mov ah, 0ch ; put pixel
+
+  colcount:
+  inc cx
+  int 10h
+  cmp cx, 250
+  JNE colcount
+
+  mov cx, 10  ; reset to start of col
+  inc dx      ;next row
+  cmp dx, 250
+  JNE colcount
 ret
+
 
 help:
 
@@ -122,6 +164,8 @@ random:
     int 10h
 ret
 
+
+
 time:
     mov ah, 02h         ;Rom-Bios interrupt func. for getting cur. time
     int 1Ah             ;ch = hours; cl = minutes; dh = seconds (BCD)
@@ -179,14 +223,14 @@ Color db 0Fh
 KernelMessage db "Kernel loaded!", 0
 CpuidMessage1 db "You have an ", 0
 CpuidMessage2 db " Computer", 0
-Studentmsg   db "Bordea Serghei", 0
+Moldovamsg   db "Schidu Vasile", 0
 TimeMessage  DB  "Current System Time is   :  :  ", 0
 HelpMessage0  db "Available Commands : ", 0
 HelpMessage1  db "cls  - Clear screen", 0 
 HelpMessage2  db "cpuinfo - Output CpuID", 0 
 HelpMessage3  db "bgcolor - Change background color", 0 
 HelpMessage4  db "fgcolor - Change text color", 0 
-HelpMessage5  db "student - Print student info", 0 
+HelpMessage5  db "moldova - Draw the Moldova Flag", 0 
 HelpMessage6  db "help - Print help menu", 0 
 HelpMessage7  db "random - Generate a random number", 0 
 HelpMessage8 db "time - get current time", 0 
@@ -259,18 +303,18 @@ ConsoleInput:
       mov cx, 7
       Compare FGColorCommand
       cmp al, 1
-      jnz Student
+      jnz Moldova
       call Newline
       call fgcolor
       jmp ConsoleInput
     
-    Student:
+    Moldova:
       mov cx, 7
-      Compare StudentCommand
+      Compare MoldovaCommand
       cmp al, 1
       jnz CPUInfo
       call Newline
-      call student
+      call moldova
       jmp ConsoleInput
     
     CPUInfo:
@@ -312,7 +356,7 @@ ClearCommand db "cls", 0
 CpuCommand db "cpuinfo", 0
 BGColorCommand db "bgcolor", 0
 FGColorCommand db "fgcolor", 0
-StudentCommand db "student", 0
+MoldovaCommand db "moldova", 0
 RandomCommand db "random", 0
 TimeCommand db "time", 0
 HelpCommand db "help", 0
