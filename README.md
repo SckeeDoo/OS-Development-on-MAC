@@ -20,7 +20,7 @@ qemu-system-x86_64 -fda images/floppy.fda
 ~~~
 
 Before running this script make sure that:
-#1. You have installed brew
+#####1. You have installed brew
 #2. You have created a folder for your project
 #3. You have bootloader.nasm and kernel.nasm files
 #4. You have installed on your make nasm packeges
