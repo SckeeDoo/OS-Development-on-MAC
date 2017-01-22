@@ -33,48 +33,66 @@ ret
 
 moldova: 
   call cls
-  mov ax, 012h
-  int 10h
-  mov al, 1100b
-
-  mov cx, 50  ;col
-  mov dx, 50  ;row
+  mov ax,012h ;VGA mode
+ int 10h ;640 x 480 16 colors.
+  mov al, 00000001b ; blue color
+  stosb
+  mov cx, 20  ;col
+  mov dx, 20  ;row
   mov ah, 0ch ; put pixel
+
 
   colcount:
   inc cx
   int 10h
-  cmp cx, 100
+  cmp cx, 170
   JNE colcount
 
-  mov cx, 10  ; reset to start of col
+  mov cx, 20  ; reset to start of col
   inc dx      ;next row
-  cmp dx, 250
+  cmp dx, 280
   JNE colcount
 
 
-
-
-
-
-
-
-  mov al, 1100b
-
-  mov cx, 150  ;col
-  mov dx, 50  ;row
+  ; Draw Yellow part
+  mov al, 00001110b ; yellow color
+  stosb
+  mov cx, 170  ;col
+  mov dx, 20  ;row
   mov ah, 0ch ; put pixel
 
-  colcount:
+
+  colcount2:
   inc cx
   int 10h
-  cmp cx, 250
-  JNE colcount
+  cmp cx, 320
+  JNE colcount2
 
-  mov cx, 10  ; reset to start of col
+  mov cx, 170  ; reset to start of col
   inc dx      ;next row
-  cmp dx, 250
-  JNE colcount
+  cmp dx, 280
+  JNE colcount2
+
+
+; Draw RED part
+  mov al, 0000100b ; red color
+  stosb
+  mov cx, 320  ;col
+  mov dx, 20  ;row
+  mov ah, 0ch ; put pixel
+
+
+  colcount3:
+  inc cx
+  int 10h
+  cmp cx, 470
+  JNE colcount3
+
+  mov cx, 320  ; reset to start of col
+  inc dx      ;next row
+  cmp dx, 280
+  JNE colcount3
+  int 10h
 ret
 
 
